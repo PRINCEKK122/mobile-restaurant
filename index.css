@@ -43,7 +43,7 @@ main {
 
 .menu-showcase {
     display: flex;
-    gap: 15px;
+    gap: 12px;
 }
 
 .menu-showcase-details {
@@ -75,6 +75,6 @@ main {
     font-family: Inter, serif;
     font-size: 32px;
     font-weight: 200;
-    padding:  11px 15px;
+    padding:  10px 15px;
     line-height: 24px;
 }
