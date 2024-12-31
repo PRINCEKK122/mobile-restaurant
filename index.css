@@ -193,3 +193,13 @@ input:focus {
 #form .complete-btn {
     margin-top: 10px;
 }
+
+.success {
+    color: #065F46;
+    text-align: center;
+    font-size: 25px;
+    background-color: #ECFDF5;
+    padding: 50px 0;
+    margin-bottom: 90px;
+    border-radius: 3px;
+}

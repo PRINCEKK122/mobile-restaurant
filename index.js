@@ -98,6 +98,7 @@ document.addEventListener("click", function (e) {
   const { id, removeBtnId } = e.target.dataset;
 
   if (id) {
+    console.log("ID", id);
     orderSummary.classList.remove("hide");
     selectedMenuItems.push(menuArray[Number(id)]);
     renderOrder(menuArray[Number(id)]);
@@ -123,7 +124,14 @@ submitOrderBtn.addEventListener("click", function () {
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   const formData = new FormData(form);
-  console.log(formData.get("fullName"));
+
+  const pEl = document.createElement("p");
+  pEl.classList.add("success");
+  pEl.textContent = `Thanks, ${formData.get(
+    "fullName"
+  )}! your order is on its way!`;
+  modalContainer.classList.add("hide");
+  orderSummary.replaceWith(pEl);
 });
 
 renderMenuItems();
