@@ -3,7 +3,15 @@ import { menuArray } from "./data.js";
 const menuContainer = document.getElementById("menu");
 const orderContainer = document.getElementById("orders");
 const totalEl = document.getElementById("total-price");
-const selectedItems = [];
+const orderSummary = document.getElementById("order-summary");
+
+let selectedMenuItems = [];
+
+const calcTotalPrice = function (items) {
+  return items.reduce(function (acc, item) {
+    return acc + item.price;
+  }, 0);
+};
 
 const composeHTML = function (item) {
   const { name, ingredients, price, id } = item;
@@ -52,6 +60,7 @@ const renderMenuItems = () => {
   });
 };
 
+// TODO: Refactor this to check if the items is add or remove
 const renderOrder = (item) => {
   const orderDetailsEl = document.createElement("div");
   const orderItemDetails = document.createElement("div");
@@ -68,6 +77,11 @@ const renderOrder = (item) => {
   const btnEl = document.createElement("button");
   btnEl.textContent = "remove";
   btnEl.setAttribute("class", "btn remove-btn");
+  // keeping track of the buttons as it added to the array
+  // I am not checking for duplicates
+  // more on that later
+  btnEl.setAttribute("data-remove-btn-id", selectedMenuItems.length - 1);
+
   orderItemDetails.append(btnEl);
 
   const priceEl = document.createElement("p");
@@ -75,22 +89,28 @@ const renderOrder = (item) => {
   orderDetailsEl.append(priceEl);
   orderContainer.append(orderDetailsEl);
 
-  const totalPrice = selectedItems.reduce(function (total, item) {
-    console.log(item);
-    return item.price + total;
-  }, 0);
-
-  totalEl.textContent = `$${totalPrice}`;
+  totalEl.textContent = `$${calcTotalPrice(selectedMenuItems)}`;
 };
 
 document.addEventListener("click", function (e) {
-  const orders = [];
-  const id = e.target.dataset.id;
+  const { id, removeBtnId } = e.target.dataset;
 
   if (id) {
-    document.getElementById("order-summary").classList.remove("hide");
-    selectedItems.push(menuArray[id]);
-    renderOrder(menuArray[id]);
+    orderSummary.classList.remove("hide");
+    selectedMenuItems.push(menuArray[Number(id)]);
+    renderOrder(menuArray[Number(id)]);
+  } else if (removeBtnId) {
+    e.target.parentElement.parentElement.remove();
+    delete selectedMenuItems[Number(removeBtnId)];
+    totalEl.textContent = `$${calcTotalPrice(selectedMenuItems)}`;
+
+    const allElementsEmpty = selectedMenuItems.every(function (item) {
+      return item === undefined;
+    });
+
+    if (allElementsEmpty) {
+      orderSummary.classList.add("hide");
+    }
   }
 });
 

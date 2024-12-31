@@ -137,3 +137,7 @@ main {
 .hide {
     display: none;
 }
+
+.not-allowed {
+    cursor: not-allowed;
+}
