@@ -31,8 +31,28 @@
           <p id="total-price"></p>
         </div>
 
-        <button class="btn complete-btn">Complete order</button>
+        <button id="btn-submit" class="btn complete-btn">Complete order</button>
       </section>
+
+      <aside id="modal-container">
+        <div id="modal" class="modal">
+          <h2 class="modal-title">Enter card details</h2>
+
+          <form id="form">
+            <input name="fullName" type="text" placeholder="Enter your name" required minlength="4" />
+            <input name="cardNumber" type="text" placeholder="Enter card number" required pattern="[0-9]{16}" />
+            <input
+              name="cvv"
+              type="text"
+              pattern="[0-9]{3}"
+              placeholder="Enter CVV"
+              required
+            />
+
+            <button class="btn complete-btn">Pay</button>
+          </form>
+        </div>
+      </aside>
     </main>
 
     <script type="module" src="index.js"></script>

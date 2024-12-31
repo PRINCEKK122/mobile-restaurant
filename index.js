@@ -2,8 +2,11 @@ import { menuArray } from "./data.js";
 
 const menuContainer = document.getElementById("menu");
 const orderContainer = document.getElementById("orders");
-const totalEl = document.getElementById("total-price");
 const orderSummary = document.getElementById("order-summary");
+const modalContainer = document.getElementById("modal-container");
+const submitOrderBtn = document.getElementById("btn-submit");
+const form = document.getElementById("form");
+const totalEl = document.getElementById("total-price");
 
 let selectedMenuItems = [];
 
@@ -60,7 +63,6 @@ const renderMenuItems = () => {
   });
 };
 
-// TODO: Refactor this to check if the items is add or remove
 const renderOrder = (item) => {
   const orderDetailsEl = document.createElement("div");
   const orderItemDetails = document.createElement("div");
@@ -112,6 +114,16 @@ document.addEventListener("click", function (e) {
       orderSummary.classList.add("hide");
     }
   }
+});
+
+submitOrderBtn.addEventListener("click", function () {
+  modalContainer.classList.remove("hide");
+});
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+  console.log(formData.get("fullName"));
 });
 
 renderMenuItems();

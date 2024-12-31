@@ -141,3 +141,55 @@ main {
 .not-allowed {
     cursor: not-allowed;
 }
+
+/* MODAL */
+
+#modal-container {
+    /* max-width: 530px; */
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 420px;
+    position: fixed;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 350px;
+    margin: auto;
+    box-shadow: 5px 5px 255px #000;
+    z-index: 1;
+    background-color: #fff;
+    padding: 0 24px;
+    border-radius: 4px;
+}
+
+.modal-title {
+    font-size: 24px;
+    padding: 60px 0 24px;
+    text-align: center;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+input {
+    display: block;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 13px 26px;
+    border-radius: 4px;
+    border: 1px solid #757575;
+    font-size: 20px;
+    color: #757575;
+    outline: none;
+}
+
+input:focus {
+    border: 1px solid #16db99;
+}
+
+#form .complete-btn {
+    margin-top: 10px;
+}
