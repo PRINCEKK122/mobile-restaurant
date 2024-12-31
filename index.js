@@ -98,7 +98,6 @@ document.addEventListener("click", function (e) {
   const { id, removeBtnId } = e.target.dataset;
 
   if (id) {
-    console.log("ID", id);
     orderSummary.classList.remove("hide");
     selectedMenuItems.push(menuArray[Number(id)]);
     renderOrder(menuArray[Number(id)]);
